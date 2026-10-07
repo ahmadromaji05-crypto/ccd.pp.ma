@@ -3,28 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kuis Cerdas Cermat TV: Bab I & II Pendidikan Pancasila Kelas XI</title>
+  <title>Cerdas Cermat TV: Pendidikan Pancasila Kelas XI (Bab I & Bab II)</title>
   <style>
     :root {
-      --primary: #d32f2f;
+      --primary: #c62828;
       --primary-dark: #8e0000;
-      --gold: #ffd700;
-      --gold-dark: #c6a700;
-      --bg-dark: #0d1117;
-      --card-bg: #161b22;
+      --gold: #fbc02d;
+      --gold-bright: #fff176;
+      --bg-dark: #0b0f19;
+      --card-bg: #151c2c;
       --text: #f0f6fc;
-      --text-muted: #8b949e;
-      --correct: #2ea44f;
-      --wrong: #cb2431;
+      --text-muted: #94a3b8;
+      --correct: #16a34a;
+      --wrong: #dc2626;
+      --accent: #2563eb;
     }
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
     body {
-      background: radial-gradient(circle at center, #1b2735 0%, var(--bg-dark) 100%);
+      background: radial-gradient(circle at 50% 20%, #1e293b 0%, var(--bg-dark) 100%);
       color: var(--text);
       min-height: 100vh;
       display: flex;
@@ -33,101 +34,160 @@
       justify-content: center;
       padding: 20px;
     }
-    .game-container {
+    .game-card {
       background: var(--card-bg);
-      border: 3px solid var(--gold);
-      border-radius: 18px;
-      box-shadow: 0 0 35px rgba(255, 215, 0, 0.25);
+      border: 2px solid var(--gold);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(251, 192, 45, 0.2);
       width: 100%;
-      max-width: 800px;
-      padding: 30px;
+      max-width: 880px;
+      padding: 35px 30px;
       text-align: center;
       position: relative;
     }
-    .tv-badge {
+    .badge {
       display: inline-block;
       background: var(--primary);
       color: #fff;
-      font-weight: 800;
-      padding: 6px 16px;
-      border-radius: 20px;
+      font-weight: 700;
+      padding: 6px 18px;
+      border-radius: 30px;
       text-transform: uppercase;
       letter-spacing: 2px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       margin-bottom: 12px;
-      box-shadow: 0 0 10px rgba(211, 47, 47, 0.7);
+      box-shadow: 0 0 10px rgba(198, 40, 40, 0.5);
     }
     h1 {
-      color: var(--gold);
-      font-size: 2.2rem;
+      color: var(--gold-bright);
+      font-size: 2.1rem;
       margin-bottom: 8px;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
     }
     .sub-title {
       color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+    .mode-select {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .mode-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: var(--text);
+      padding: 10px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .mode-btn.active, .mode-btn:hover {
+      background: var(--primary);
+      border-color: var(--gold);
+      color: white;
+    }
+    .input-group {
       margin-bottom: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .input-group label {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .input-group input {
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      background: #0f172a;
+      color: white;
       font-size: 1rem;
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
+      outline: none;
+    }
+    .input-group input:focus {
+      border-color: var(--gold);
     }
     .status-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.04);
       padding: 12px 20px;
-      border-radius: 12px;
+      border-radius: 14px;
       margin-bottom: 20px;
       font-weight: 600;
+      font-size: 0.95rem;
     }
-    .timer-badge {
+    .timer-pill {
       background: var(--primary);
-      padding: 4px 14px;
-      border-radius: 15px;
-      font-size: 1.1rem;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 1rem;
     }
-    .score-badge {
+    .score-pill {
       color: var(--gold);
       font-size: 1.1rem;
     }
     .question-box {
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.02);
       border-left: 5px solid var(--gold);
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 25px;
-      font-size: 1.25rem;
-      line-height: 1.5;
+      border-radius: 10px;
+      padding: 22px;
+      margin-bottom: 24px;
+      font-size: 1.2rem;
+      line-height: 1.6;
       text-align: left;
+    }
+    .category-badge {
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      display: block;
     }
     .options-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 15px;
+      gap: 14px;
       margin-bottom: 20px;
     }
-    @media (max-width: 600px) {
+    @media (max-width: 680px) {
       .options-grid {
         grid-template-columns: 1fr;
       }
     }
     .option-btn {
-      background: #21262d;
-      border: 2px solid #30363d;
+      background: #1e293b;
+      border: 1px solid #334155;
       color: var(--text);
-      padding: 16px;
-      border-radius: 10px;
-      font-size: 1rem;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 0.95rem;
       cursor: pointer;
       transition: all 0.2s;
       text-align: left;
       display: flex;
       align-items: center;
+      line-height: 1.4;
     }
     .option-btn:hover:not(:disabled) {
       border-color: var(--gold);
-      background: #30363d;
+      background: #273549;
       transform: translateY(-2px);
     }
-    .option-btn .label {
+    .option-btn .lbl {
       background: var(--gold);
       color: #000;
       font-weight: bold;
@@ -142,363 +202,1073 @@
     }
     .option-btn.correct {
       background: var(--correct) !important;
-      border-color: #56d364 !important;
+      border-color: #4ade80 !important;
       color: white;
     }
     .option-btn.wrong {
       background: var(--wrong) !important;
-      border-color: #f85149 !important;
+      border-color: #f87171 !important;
       color: white;
     }
-    .feedback-box {
-      min-height: 65px;
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 8px;
+    .explanation-box {
+      min-height: 55px;
+      padding: 14px;
+      margin-bottom: 18px;
+      border-radius: 10px;
       font-size: 0.95rem;
-      line-height: 1.4;
+      line-height: 1.45;
+      text-align: left;
       display: none;
     }
-    .feedback-box.correct {
+    .explanation-box.correct {
       display: block;
-      background: rgba(46, 164, 79, 0.2);
+      background: rgba(22, 163, 74, 0.15);
       border: 1px solid var(--correct);
-      color: #7ee787;
+      color: #86efac;
     }
-    .feedback-box.wrong {
+    .explanation-box.wrong {
       display: block;
-      background: rgba(203, 36, 49, 0.2);
+      background: rgba(220, 38, 38, 0.15);
       border: 1px solid var(--wrong);
-      color: #ffa198;
+      color: #fca5a5;
     }
-    .action-btn {
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    .main-btn {
+      background: linear-gradient(135deg, var(--gold), #d97706);
       border: none;
       color: #000;
       font-weight: 700;
-      font-size: 1.1rem;
-      padding: 14px 35px;
+      font-size: 1.05rem;
+      padding: 13px 32px;
       border-radius: 25px;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+      box-shadow: 0 4px 15px rgba(251, 192, 45, 0.3);
       transition: all 0.2s;
     }
-    .action-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+    .main-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 6px 20px rgba(251, 192, 45, 0.45);
     }
     .hidden {
       display: none !important;
     }
-    .final-score {
-      font-size: 3.5rem;
-      color: var(--gold);
-      margin: 20px 0;
-      font-weight: 800;
+
+    /* Certificate Styles */
+    .cert-container {
+      background: #fdfbf7;
+      color: #1a1a1a;
+      border: 8px double #b45309;
+      border-radius: 12px;
+      padding: 35px 25px;
+      margin: 20px auto;
+      max-width: 720px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+      position: relative;
+      background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+      background-size: 18px 18px;
     }
-    .category-tag {
-      font-size: 0.8rem;
-      color: var(--gold);
+    .cert-header {
+      font-family: Georgia, serif;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #78350f;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      display: block;
+      letter-spacing: 2px;
+      border-bottom: 2px solid #b45309;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .cert-sub {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #4b5563;
+      margin-bottom: 18px;
+    }
+    .cert-name {
+      font-size: 1.9rem;
+      font-weight: bold;
+      color: #1e3a8a;
+      text-decoration: underline;
+      margin: 12px 0;
+      text-transform: capitalize;
+    }
+    .cert-desc {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #374151;
+      margin: 15px 20px;
+    }
+    .cert-score-box {
+      display: inline-block;
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+      padding: 6px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #92400e;
+      margin-bottom: 25px;
+    }
+    .cert-signature {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 30px;
+      padding: 0 35px;
+    }
+    .cert-stamp {
+      font-size: 0.85rem;
+      color: #059669;
+      border: 2px dashed #059669;
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .cert-signee {
+      text-align: center;
+    }
+    .sign-line {
+      width: 220px;
+      border-bottom: 1.5px solid #1f2937;
       margin-bottom: 6px;
+    }
+    .cert-teacher {
+      font-weight: bold;
+      font-size: 1rem;
+      color: #111827;
+    }
+    .cert-role {
+      font-size: 0.85rem;
+      color: #4b5563;
     }
   </style>
 </head>
 <body>
 
-<div class="game-container">
-  <!-- Start Screen -->
-  <div id="start-screen">
-    <div class="tv-badge">TV Show Edition</div>
-    <h1>KUIS CERDAS CERMAT</h1>
-    <p class="sub-title">Pendidikan Pancasila Kelas XI SMA/SMK (BAB I & BAB II)</p>
-    <p style="margin-bottom: 25px; line-height: 1.6; color: var(--text-muted);">
-      Uji ketangkasan dan wawasan Anda mengenai Keterkaitan Antarsila, Ideologi Pancasila, 
-      Periodisasi Konstitusi, serta Perubahan UUD NRI Tahun 1945 ala kuis panggung televisi!
+<div class="game-card">
+  <!-- START VIEW -->
+  <div id="view-start">
+    <div class="badge">Edisi TV Show Cerdas Cermat</div>
+    <h1>CERDAS CERMAT PANCASILA</h1>
+    <p class="sub-title">Kurikulum Merdeka - Pendidikan Pancasila SMA/SMK Kelas XI</p>
+
+    <div class="input-group">
+      <label for="player-name">Masukkan Nama Lengkap Peserta:</label>
+      <input type="text" id="player-name" placeholder="Nama Anda (untuk sertifikat)" />
+    </div>
+
+    <div style="margin-bottom: 15px; font-weight: 600; font-size: 0.95rem; color: var(--gold);">Pilih Kategori Babak Soal:</div>
+    <div class="mode-select">
+      <button class="mode-btn active" onclick="setMode('bab1', this)">BAB I: Menjiwai Pancasila (30 Soal)</button>
+      <button class="mode-btn" onclick="setMode('bab2', this)">BAB II: Demokrasi UUD 1945 (30 Soal)</button>
+      <button class="mode-btn" onclick="setMode('all', this)">Gabungan Bab I & II (60 Soal)</button>
+    </div>
+
+    <p style="margin-bottom: 22px; font-size: 0.9rem; color: var(--text-muted);">
+      * Raih nilai minimal <strong>85</strong> untuk memperoleh Sertifikat Resmi bertanda tangan Guru Mapel!
     </p>
-    <button class="action-btn" onclick="startGame()">Mulai Acara!</button>
+
+    <button class="main-btn" onclick="startQuiz()">Mulai Acara Kuis!</button>
   </div>
 
-  <!-- Quiz Screen -->
-  <div id="quiz-screen" class="hidden">
+  <!-- QUIZ VIEW -->
+  <div id="view-quiz" class="hidden">
     <div class="status-bar">
-      <div>Soal: <span id="q-counter">1</span>/<span id="q-total">10</span></div>
-      <div class="score-badge">Skor: <span id="current-score">0</span></div>
-      <div class="timer-badge" id="timer">Waktu: 20s</div>
+      <div>Peserta: <strong id="lbl-player" style="color:var(--gold-bright);"></strong></div>
+      <div>Soal: <span id="lbl-curr-q">1</span>/<span id="lbl-total-q">30</span></div>
+      <div class="score-pill">Skor: <span id="lbl-score">0</span></div>
+      <div class="timer-pill" id="lbl-timer">Waktu: 25s</div>
     </div>
 
     <div class="question-box">
-      <span class="category-tag" id="q-category">Bab I: Menjiwai Pancasila</span>
-      <div id="question-text">Teks pertanyaan kuis akan muncul di sini...</div>
+      <span class="category-badge" id="lbl-category">Bab I: Menjiwai Pancasila</span>
+      <div id="lbl-question-text">Teks pertanyaan...</div>
     </div>
 
-    <div class="options-grid" id="options-container">
-      <!-- Options injected by JS -->
-    </div>
+    <div class="options-grid" id="options-box"></div>
+    <div class="explanation-box" id="explanation-box"></div>
 
-    <div class="feedback-box" id="feedback"></div>
-
-    <button id="next-btn" class="action-btn hidden" onclick="nextQuestion()">Soal Berikutnya &raquo;</button>
+    <button id="btn-next" class="main-btn hidden" onclick="goNext()">Lanjut ke Soal Berikutnya &raquo;</button>
   </div>
 
-  <!-- Result Screen -->
-  <div id="result-screen" class="hidden">
-    <div class="tv-badge">Babak Final Selesai</div>
-    <h1>HASIL CERDAS CERMAT</h1>
-    <p class="sub-title">Selamat telah menuntaskan seluruh babak!</p>
-    <div class="final-score" id="final-score">0</div>
-    <p id="result-message" style="margin-bottom: 25px; font-size: 1.2rem;"></p>
-    <button class="action-btn" onclick="restartGame()">Main Lagi</button>
+  <!-- RESULT & CERTIFICATE VIEW -->
+  <div id="view-result" class="hidden">
+    <div class="badge">Babak Kuis Selesai</div>
+    <h1>HASIL PENILAIAN</h1>
+    <p class="sub-title" id="res-subtitle"></p>
+
+    <div style="font-size: 3rem; color: var(--gold-bright); font-weight: bold; margin: 15px 0;">
+      Nilai Akhir: <span id="res-score-pct">0</span>
+    </div>
+    <p id="res-feedback" style="font-size: 1.1rem; margin-bottom: 20px;"></p>
+
+    <!-- Certificate Section -->
+    <div id="cert-wrapper" class="hidden">
+      <div class="cert-container" id="printable-cert">
+        <div class="cert-header">Sertifikat Kelulusan</div>
+        <div class="cert-sub">Cerdas Cermat Pendidikan Pancasila Kelas XI</div>
+        
+        <p class="cert-desc">Diberikan secara terhormat kepada:</p>
+        <div class="cert-name" id="cert-student-name">Nama Peserta</div>
+        
+        <p class="cert-desc">
+          Atas dedikasi, ketelitian, dan keberhasilan meraih prestasi sangat memuaskan dalam Uji Kompetensi Cerdas Cermat TV materi <strong>Bab I (Menjiwai Pancasila)</strong> dan <strong>Bab II (Demokrasi Berdasarkan UUD NRI Tahun 1945)</strong> dengan perolehan:
+        </p>
+        
+        <div class="cert-score-box">
+          NILAI PRESTASI: <span id="cert-score-val">90</span> / 100
+        </div>
+
+        <div class="cert-signature">
+          <div class="cert-stamp">Lulus &middot; Sangat Baik</div>
+          <div class="cert-signee">
+            <div style="font-size:0.85rem; color:#4b5563; margin-bottom:40px;">Guru Mata Pelajaran,</div>
+            <div class="sign-line"></div>
+            <div class="cert-teacher">Moh. Joharul Yusuf, S. Pd</div>
+            <div class="cert-role">NIP / Guru Mapel Pendidikan Pancasila</div>
+          </div>
+        </div>
+      </div>
+      <button class="main-btn" style="background:#0284c7; color:white; margin: 10px 5px;" onclick="window.print()">Cetak / Simpan PDF Sertifikat</button>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <button class="main-btn" onclick="resetToStart()">Kembali ke Beranda</button>
+    </div>
   </div>
 </div>
 
 <script>
-const quizData = [
+// DATA SOAL: 30 SOAL BAB I & 30 SOAL BAB II (TOTAL 60 SOAL DARI BUKU TEKS)
+const questionsBab1 = [
   {
-    category: "BAB I: Menjiwai Pancasila",
-    question: "Menurut Mohammad Hatta dalam buku 'Uraian Pancasila' (1984), bagaimana hubungan keterkaitan antarsila dalam Pancasila?",
-    options: [
-      "Tiap sila dapat dipisahkan dan diutamakan sesuai kehendak pemimpin",
-      "Kelima sila merupakan kesatuan bulat dan utuh yang saling menjiwai serta tidak dapat berdiri sendiri",
-      "Sila kelima merupakan sila mandiri yang lepas dari pengaruh sila ketuhanan",
-      "Sila-sila hanya berlaku dalam batas peribadatan keagamaan semata"
+    q: "Dalam buku 'Uraian Pancasila' (1984), Mohammad Hatta bersama para tokoh perumus menegaskan bahwa kedudukan lima sila Pancasila adalah...",
+    opts: [
+      "Dapat dipisah-pisahkan pelaksanaannya sesuai preferensi warga",
+      "Satu kesatuan bulat yang tak dapat dipisahkan dan saling kait-mengkait",
+      "Sila kelima merupakan sila mandiri yang lepas dari sila pertama",
+      "Hanya berlaku mengikat pada lembaga kekuasaan yudikatif semata"
     ],
-    answer: 1,
-    explanation: "Mohammad Hatta menegaskan bahwa Pancasila adalah kesatuan yang tak dapat dipisahkan, erat sekali, berkait-kait, dan berangkaian tanpa berdiri sendiri."
+    ans: 1,
+    exp: "Mohammad Hatta dkk. menyatakan kelima sila merupakan kesatuan yang tidak dapat dipisahkan satu sama lain dan saling berangkaian."
   },
   {
-    category: "BAB I: Menjiwai Pancasila",
-    question: "Bung Karno menyebut Pancasila berdimensi 'meja statis' dan 'leitstar dinamis'. Maksud dari Pancasila sebagai 'leitstar dinamis' adalah...",
-    options: [
-      "Bintang penuntun yang mampu menggerakkan bangsa dalam merespons tantangan zaman secara luwes",
-      "Titik kaku yang tidak boleh disesuaikan dengan kondisi modernitas",
-      "Hukum darurat yang hanya dipakai ketika terjadi pergantian kekuasaan",
-      "Simbol formal kenegaraan yang ditaruh di atas meja persidangan"
+    q: "Sila Ketuhanan Yang Maha Esa menduduki posisi fundamental dalam hierarki pengamalan Pancasila, yang bermakna bahwa sila pertama...",
+    opts: [
+      "Menjiwai, memimpin, dan mendasari terwujudnya sila kedua hingga kelima",
+      "Mewajibkan berdirinya negara bersistem teokrasi agama tunggal",
+      "Hanya mengatur tata cara ritual peribadatan personal di tempat ibadah",
+      "Terpisah sama sekali dari kehidupan politik dan tata negara"
     ],
-    answer: 0,
-    explanation: "Leitstar (dari bahasa Jerman 'leitstern' bermakna bintang penuntun) menyediakan cita-cita dan mengarahkan bangsa agar adaptif menghadapi perubahan zaman tanpa meninggalkan prinsip dasarnya."
+    ans: 0,
+    exp: "Sila pertama hadir menjadi sila yang memimpin atau menjiwai seluruh sila-sila lainnya (Hatta dkk, 1984)."
   },
   {
-    category: "BAB I: Menjiwai Pancasila",
-    question: "Koento Wibisono mengemukakan tiga unsur esensial yang termuat dalam ideologi, yaitu...",
-    options: [
-      "Kedaulatan, Pemerintahan, dan Wilayah",
-      "Keyakinan, Mitos, dan Loyalitas",
-      "Keadilan, Kebersamaan, dan Kemandirian",
-      "Demokrasi, Otonomi, dan Sentralisasi"
+    q: "Sukarno dalam pidato kursus Pancasila (2013) menyebutkan dua dimensi utama Pancasila, yaitu sebagai...",
+    opts: [
+      "Ideologi tertutup dan doktrin mutlak",
+      "Meja statis dan leitstar dinamis",
+      "Konstitusi darurat dan manifesto politik",
+      "Hukum adat dan hukum kolonial"
     ],
-    answer: 1,
-    explanation: "Tiga unsur esensial ideologi menurut Koento Wibisono adalah Keyakinan (gagasan vital), Mitos (ajaran optimistis), dan Loyalitas (keterlibatan optimal pendukungnya)."
+    ans: 1,
+    exp: "Pancasila adalah meja statis (titik pemersatu keragaman) dan leitstar dinamis (bintang penuntun masa depan)."
   },
   {
-    category: "BAB I: Menjiwai Pancasila",
-    question: "Pasal dalam UUD NRI Tahun 1945 yang menjamin kemerdekaan memeluk agama dan beribadat sebagai perwujudan Sila Pertama adalah...",
-    options: [
+    q: "Kata 'leitstar' yang dicetuskan oleh Bung Karno berasal dari istilah bahasa Jerman 'leitstern' yang memiliki arti...",
+    opts: [
+      "Pondasi tak tergoyahkan",
+      "Bintang penuntun",
+      "Batu penjuru",
+      "Tonggak keadilan"
+    ],
+    ans: 1,
+    exp: "Leitstar berakar dari kata leitstern yang berarti bintang penuntun penunjuk arah bangsa."
+  },
+  {
+    q: "Maksud dari Pancasila sebagai 'leitstar dinamis' adalah...",
+    opts: [
+      "Dasar negara yang dapat diganti kapan saja bila terjadi krisis politik",
+      "Mampu mengarahkan bangsa merespons tantangan zaman tanpa meninggalkan prinsip dasarnya",
+      "Peraturan pemerintah yang hanya berlaku dalam periode lima tahun",
+      "Simbol negara yang hanya dipajang pada ruangan resmi pemerintahan"
+    ],
+    ans: 1,
+    exp: "Pancasila tidak diam mematung, melainkan luwes dan membimbing bangsa menghadapi dinamika zaman tanpa mengorbankan jati diri bangsa."
+  },
+  {
+    q: "Pancasila berkedudukan sebagai 'meja statis' karena berfungsi sebagai...",
+    opts: [
+      "Titik temu yang mempersatukan segala keragaman etnis, budaya, dan agama di Indonesia",
+      "Aturan yang tidak mengizinkan adanya kemajuan teknologi informasi",
+      "Penetapan pembagian kelas sosial ekonomi di masyarakat",
+      "Alat penguasa untuk meniadakan suara minoritas"
+    ],
+    ans: 0,
+    exp: "Sebagai meja statis, Pancasila mempertemukan dan menyatukan seluruh elemen keragaman suku, agama, dan pandangan hidup."
+  },
+  {
+    q: "Menurut Koento Wibisono, terdapat tiga unsur esensial yang termuat di dalam suatu ideologi, yaitu...",
+    opts: [
+      "Struktur, kultur, dan infrastruktur",
+      "Keyakinan, mitos, dan loyalitas",
+      "Kedaulatan, wilayah, dan pemerintahan",
+      "Norma, etika, dan estetika"
+    ],
+    ans: 1,
+    exp: "Tiga unsur esensial ideologi menurut Koento Wibisono adalah keyakinan, mitos, dan loyalitas."
+  },
+  {
+    q: "Unsur esensial ideologi berupa ajaran yang secara optimistis pasti menjamin tercapainya cita-cita melalui cara yang ditentukan disebut...",
+    opts: [
+      "Keyakinan",
+      "Mitos",
+      "Loyalitas",
+      "Adaptabilitas"
+    ],
+    ans: 1,
+    exp: "Mitos memosisikan ajaran secara optimistis menjamin ketercapaian tujuan."
+  },
+  {
+    q: "Unsur esensial ideologi berupa tuntutan keterlibatan optimal atas dasar kesetiaan dari subjek pendukungnya dinamakan...",
+    opts: [
+      "Loyalitas",
+      "Mitos",
+      "Konsensus",
+      "Keyakinan"
+    ],
+    ans: 0,
+    exp: "Loyalitas merupakan keharusan keterlibatan optimal dan kesetiaan dari para pendukung ideologi tersebut."
+  },
+  {
+    q: "Secara etimologis, kata 'ideologi' berasal dari bahasa Yunani 'ideos' dan 'logos' yang berarti...",
+    opts: [
+      "Tindakan dan hukum",
+      "Ide/gagasan dan pengetahuan",
+      "Negara dan masyarakat",
+      "Keadilan dan kemakmuran"
+    ],
+    ans: 1,
+    exp: "Ideos berarti ide atau gagasan, sedangkan logos berarti pengetahuan."
+  },
+  {
+    q: "Dalam pidato Lahirnya Pancasila 1 Juni 1945, Sukarno menegaskan bahwa Indonesia merdeka didirikan dengan prinsip...",
+    opts: [
+      "Semua buat semua, bukan untuk satu orang atau satu golongan",
+      "Kekuasaan terpusat pada kaum cerdik pandai semata",
+      "Mengutamakan kelompok bangsawan pemilik tanah modal",
+      "Hanya mewakili kepentingan penduduk pulau terbesar"
+    ],
+    ans: 0,
+    exp: "Sukarno menegaskan kita hendak mendirikan negara 'semua buat semua', bukan untuk satu golongan bangsawan atau kaya."
+  },
+  {
+    q: "Pernyataan Bung Karno: 'Aku bukan pencipta Pancasila... Aku hanya menggali Pancasila daripada buminya bangsa Indonesia' disampaikan pada...",
+    opts: [
+      "Kongres Pemuda 28 Oktober 1928",
+      "Kongres Rakyat Jawa Timur pada 24 September 1955",
+      "Sidang BPUPK pertama 1 Juni 1945",
+      "Sidang pleno PPKI 18 Agustus 1945"
+    ],
+    ans: 1,
+    exp: "Pernyataan tersebut disampaikan Bung Karno di depan Kongres Rakyat Jawa Timur pada 24 September 1955."
+  },
+  {
+    q: "Jaminan kebebasan beragama dan kemerdekaan memeluk keyakinan tercantum secara tegas dalam UUD NRI Tahun 1945 pada...",
+    opts: [
       "Pasal 27 ayat (1)",
-      "Pasal 28",
+      "Pasal 28E ayat (3)",
       "Pasal 29 ayat (1) dan (2)",
-      "Pasal 33 ayat (1)"
+      "Pasal 33 ayat (2)"
     ],
-    answer: 2,
-    explanation: "Pasal 29 menegaskan negara berdasar atas Ketuhanan Yang Maha Esa dan menjamin kemerdekaan tiap penduduk beribadah sesuai agama/kepercayaannya."
+    ans: 2,
+    exp: "Pasal 29 menegaskan negara berdasar atas Ketuhanan Yang Maha Esa dan menjamin kemerdekaan tiap penduduk beribadat menurut agamanya."
   },
   {
-    category: "BAB I: Menjiwai Pancasila",
-    question: "Dalam pidato 1 Juni 1945, Sukarno menegaskan bahwa negara yang hendak didirikan adalah negara...",
-    options: [
-      "Bagi kaum bangsawan dan kelompok ekonomi terkuat",
-      "Semua buat semua, bukan buat satu orang atau satu golongan",
-      "Khusus untuk suku bangsa pendiri kerajaan masa lampau",
-      "Yang menolak partisipasi rakyat dalam urusan ekonomi"
+    q: "Keterkaitan sila kedua (Kemanusiaan yang Adil dan Beradab) dan sila ketiga (Persatuan Indonesia) bermakna bahwa bangsa Indonesia...",
+    opts: [
+      "Menganggap martabat bangsanya paling superior di atas bangsa-bangsa dunia",
+      "Menyadari identitas kebangsaannya merupakan bagian dari kemanusiaan universal",
+      "Menutup diri dari pergaulan dan hubungan internasional dengan bangsa asing",
+      "Hanya membela warga negara yang satu suku atau satu agama"
     ],
-    answer: 1,
-    explanation: "Sukarno mengemukakan prinsip 'semua buat semua', bukan untuk golongan elit kaya atau bangsawan tertentu."
+    ans: 1,
+    exp: "Identitas kebangsaan Indonesia merupakan bagian dari peradaban kemanusiaan universal yang setara dan cinta damai."
   },
   {
-    category: "BAB II: Demokrasi Berdasarkan UUD 1945",
-    question: "Bentuk negara dan sistem pemerintahan pada masa berlakunya Konstitusi RIS (27 Desember 1949 - 17 Agustus 1950) adalah...",
-    options: [
-      "Negara Kesatuan dengan Sistem Presidensial",
-      "Negara Federasi (Serikat) dengan Sistem Parlementer",
-      "Negara Monarki Konstitusional dengan Sistem Campuran",
-      "Negara Kesatuan dengan Sistem Komite"
+    q: "Keterkaitan antara sila keempat dan sila kelima Pancasila menunjukkan bahwa prinsip demokrasi di Indonesia tidak hanya berupa hak politik, melainkan...",
+    opts: [
+      "Kekuasaan mutlak parlemen atas hukum",
+      "Kewajiban mendukung partai pemenang pemilu",
+      "Mencakup kesetaraan sosial-ekonomi demi kesejahteraan bersama",
+      "Pemberian hak veto khusus kepada kepala daerah"
     ],
-    answer: 1,
-    explanation: "Konstitusi RIS menetapkan bentuk negara serikat/federasi dan sistem pemerintahan parlementer yang dipimpin oleh seorang perdana menteri."
+    ans: 2,
+    exp: "Demokrasi Pancasila mencakup aspek politik serta kesetaraan sosial-ekonomi yang bermuara pada keadilan sosial."
   },
   {
-    category: "BAB II: Demokrasi Berdasarkan UUD 1945",
-    question: "Peristiwa penting pada 5 Juli 1959 yang menetapkan berlakunya kembali UUD 1945 dan pembubaran Badan Konstituante dinamakan...",
-    options: [
-      "Maklumat Wakil Presiden No. X",
-      "Supersemar",
-      "Dekrit Presiden 5 Juli 1959",
-      "Konferensi Meja Bundar"
+    q: "Visi jangka panjang Indonesia yang ditetapkan Bappenas untuk memperingati satu abad kemerdekaan adalah...",
+    opts: [
+      "Indonesia Bersatu 2030",
+      "Indonesia 2045: Berdaulat, Maju, Adil, dan Makmur",
+      "Indonesia Mandiri Abad 21",
+      "Indonesia Mercusuar Dunia 2050"
     ],
-    answer: 2,
-    explanation: "Dekrit Presiden 5 Juli 1959 membubarkan Badan Konstituante, memberlakukan kembali UUD 1945, dan membentuk MPRS serta DPAS."
+    ans: 1,
+    exp: "Pemerintah menetapkan visi 'Indonesia 2045: Berdaulat, Maju, Adil, dan Makmur' sebagai arah satu abad kemerdekaan."
   },
   {
-    category: "BAB II: Demokrasi Berdasarkan UUD 1945",
-    question: "Menurut Pasal 37 UUD NRI Tahun 1945 hasil amandemen, bagian yang secara mutlak TIDAK DAPAT diubah adalah...",
-    options: [
-      "Kewenangan Dewan Perwakilan Rakyat",
-      "Masa jabatan Presiden dan Wakil Presiden",
-      "Bentuk Negara Kesatuan Republik Indonesia (NKRI)",
-      "Jumlah anggota Badan Pemeriksa Keuangan"
+    q: "Dalam proyeksi 'Impian Indonesia 2085', salah satu target kondisi ideal masyarakat Indonesia adalah...",
+    opts: [
+      "Pemerintah dan masyarakat terbebas dari tindak pidana korupsi",
+      "Penerapan sistem satu partai tunggal secara permanen",
+      "Penghapusan seluruh otonomi daerah menjadi sentralistik",
+      "Ketergantungan ekonomi penuh pada pinjaman negara luar"
     ],
-    answer: 2,
-    explanation: "Pasal 37 ayat (5) UUD NRI Tahun 1945 menyatakan tegas bahwa khusus mengenai bentuk Negara Kesatuan Republik Indonesia tidak dapat dilakukan perubahan."
+    ans: 0,
+    exp: "Impian Indonesia 2085 memuat cita-cita SDM unggul, peradaban maju, serta aparat pemerintah dan masyarakat bebas dari korupsi."
   },
   {
-    category: "BAB II: Demokrasi Berdasarkan UUD 1945",
-    question: "Amandemen UUD NRI Tahun 1945 berlangsung secara bertahap dalam kurun waktu 1999 hingga 2002 sebanyak...",
-    options: [
-      "2 kali perubahan",
-      "3 kali perubahan",
-      "4 kali perubahan",
-      "5 kali perubahan"
+    q: "Sikap membela kepentingan kemanusiaan seperti kegiatan donor darah peserta didik merupakan wujud konkret pengamalan sila...",
+    opts: [
+      "Pertama",
+      "Kedua",
+      "Ketiga",
+      "Keempat"
     ],
-    answer: 2,
-    explanation: "UUD NRI 1945 mengalami 4 kali rangkaian amandemen pada Sidang MPR tahun 1999, 2000, 2001, dan 2002."
+    ans: 1,
+    exp: "Aksi donor darah mencerminkan nilai perikemanusiaan, kepedulian terhadap martabat sesama manusia (sila kedua)."
   },
   {
-    category: "BAB II: Demokrasi Berdasarkan UUD 1945",
-    question: "Salah satu indikator penting sistem ketatanegaraan yang demokratis menurut Affan Gaffar adalah...",
-    options: [
-      "Pemusatan seluruh kekuasaan hukum pada satu institusi tertutup",
-      "Akuntabilitas, rotasi kekuasaan, dan rekrutmen politik terbuka",
-      "Masa jabatan pemimpin kenegaraan seumur hidup tanpa batas",
-      "Pelarangan kebebasan pers dan pembatasan serikat pekerja"
+    q: "Kegiatan gotong royong warga desa membuka jalan tani mencerminkan keterkaitan erat antara sila...",
+    opts: [
+      "Kedua, ketiga, dan kelima",
+      "Pertama saja",
+      "Keempat secara mutlak",
+      "Sila kedua tanpa hubungan dengan sila lain"
     ],
-    answer: 1,
-    explanation: "Affan Gaffar menetapkan 5 indikator demokrasi: akuntabilitas, rotasi kekuasaan, rekrutmen politik terbuka, pemilihan umum, dan pemenuhan hak-hak dasar."
+    ans: 0,
+    exp: "Gotong royong merawat persatuan (sila 3), menjunjung kemanusiaan (sila 2), dan bertujuan untuk kesejahteraan bersama (sila 5)."
+  },
+  {
+    q: "Makna kata 'Adil' dalam sila Kemanusiaan yang adil dan beradab adalah...",
+    opts: [
+      "Semua orang menerima porsi yang persis sama tanpa memandang kebutuhan",
+      "Keputusan dan tindakan didasarkan pada norma objektif dan tidak sewenang-wenang",
+      "Menuruti keinginan kelompok mayoritas yang bersuara paling keras",
+      "Membela golongan kerabat keluarga terdekat terlebih dahulu"
+    ],
+    ans: 1,
+    exp: "Adil mengandung makna keputusan dan tindakan didasarkan pada ukuran/norma objektif tanpa kesewenang-wenangan."
+  },
+  {
+    q: "Pancasila memiliki ciri ideologi 'berpandangan dunia' (worldview), yang artinya...",
+    opts: [
+      "Memberikan cara pandang terpadu dan menyeluruh terhadap manusia, budaya, masyarakat, dan kekuasaan",
+      "Hanya meniru pandangan negara-negara barat",
+      "Memaksa negara lain untuk mematuhi hukum nasional Indonesia",
+      "Memisahkan urusan kemanusiaan dari tatanan ekonomi"
+    ],
+    ans: 0,
+    exp: "Berpandangan dunia berarti memberikan kerangka pemikiran konsisten dan menyeluruh dalam memaknai kehidupan bermasyarakat dan bernegara."
+  },
+  {
+    q: "Ciri ideologi berupa kemampuan merespons tantangan zaman tanpa kehilangan prinsip asasinya dinamakan...",
+    opts: [
+      "Mitos tertutup",
+      "Bersifat adaptif dan kontekstual",
+      "Monolitik",
+      "Otokratis"
+    ],
+    ans: 1,
+    exp: "Ideologi yang dinamis bersifat adaptif dan kontekstual terhadap perkembangan zaman."
+  },
+  {
+    q: "Menurut Prof. Miriam Budiardjo (2010), empat unsur mutlak pembentuk suatu negara adalah...",
+    opts: [
+      "Partai, parlemen, mahkamah, menteri",
+      "Wilayah, rakyat, pemerintah yang berdaulat, dan kemampuan berhubungan dengan negara lain",
+      "Tentara, senjata nuklir, polisi, dan penjara",
+      "Bendera, lambang, lagu kebangsaan, dan mata uang"
+    ],
+    ans: 1,
+    exp: "Empat unsur negara: wilayah batas tertentu, rakyat, pemerintah berdaulat, dan pengakuan/kemampuan hubungan internasional."
+  },
+  {
+    q: "Semangat suporter tim nasional menyanyikan 'Garuda di Dadaku' dengan mengibarkan Merah Putih di tribun stadion menunjukkan Pancasila...",
+    opts: [
+      "Hanya sebagai retorika hukum",
+      "Hidup dalam tindakan dan perasaan kebangsaan generasi muda",
+      "Menjadi doktrin yang dipaksakan pemerintah",
+      "Tidak relevan lagi dalam ranah olahraga modern"
+    ],
+    ans: 1,
+    exp: "Nyanyian suporter membuktikan Pancasila dalam tindakan hidup nyata dalam memupuk patriotisme dan nasionalisme."
+  },
+  {
+    q: "Mengapa pembentukan karakter Pelajar Pancasila mengedepankan dimensi gotong royong?",
+    opts: [
+      "Karena gotong royong merupakan saripati budaya Indonesia untuk mencapai kemajuan bersama secara sukarela",
+      "Untuk menghindari kewajiban membayar upah kerja",
+      "Sebagai cara membatasi kompetisi pendidikan internasional",
+      "Agar siswa tidak perlu berpikir kritis secara mandiri"
+    ],
+    ans: 0,
+    exp: "Gotong royong adalah saripati budaya yang memperkuat solidaritas, kepedulian, dan kolaborasi positif antarsiswa."
+  },
+  {
+    q: "Sikap menghormati pemeluk agama lain yang sedang beribadah tanpa membuat kegaduhan merupakan wujud pengamalan...",
+    opts: [
+      "Sila ke-1 yang membimbing kerukunan dan toleransi hidup beragama",
+      "Sila ke-4 dalam hal musyawarah perwakilan",
+      "Sila ke-5 mengenai pembagian keuntungan finansial",
+      "Sila ke-3 mengenai penyeragaman satu upacara ritual"
+    ],
+    ans: 0,
+    exp: "Sila pertama mengajarkan ketaatan menjalankan perintah agama dan saling menghormati antarumat beragama."
+  },
+  {
+    q: "Pemerataan pembangunan sarana infrastruktur di berbagai pelosok nusantara seperti Jalan Trans-Papua merupakan perwujudan konkret...",
+    opts: [
+      "Sila ke-1",
+      "Sila ke-2",
+      "Sila ke-4",
+      "Sila ke-5"
+    ],
+    ans: 3,
+    exp: "Pemerataan pembangunan sarana prasarana merupakan wujud keadilan sosial bagi seluruh rakyat Indonesia (Sila kelima)."
+  },
+  {
+    q: "Bagaimana cara menyikapi perbedaan pilihan atau pendapat dalam forum musyawarah kelas menurut etika Pancasila?",
+    opts: [
+      "Memotong pembicaraan teman yang berbeda pendapat secara emosional",
+      "Mendengarkan argumen secara santun dan mengutamakan kepentingan mufakat bersama",
+      "Melakukan aksi walkout dan menolak hasil keputusan kelas",
+      "Mengejek pendapat kawan di media sosial"
+    ],
+    ans: 1,
+    exp: "Musyawarah menuntut sikap santun, mendengarkan, bernalar kritis, dan menjunjung hasil mufakat bersama."
+  },
+  {
+    q: "Perilaku tidak merendahkan atau memperbudak orang lain dilandasi oleh kesadaran bahwa...",
+    opts: [
+      "Hukum dapat dibeli dengan kekayaan",
+      "Di hadapan Tuhan Yang Maha Esa dan konstitusi, seluruh harkat martabat manusia berderajat setara",
+      "Status sosial seseorang ditentukan dari garis keturunannya",
+      "Kekuasaan penguasa bersifat mutlak tanpa batas"
+    ],
+    ans: 1,
+    exp: "Sila kedua menegaskan manusia diperlakukan setara sesuai keluhuran harkat martabat ciptaan Tuhan."
+  },
+  {
+    q: "Mengapa pemahaman nilai Pancasila tidak cukup hanya dihafal secara teoretis?",
+    opts: [
+      "Karena ujian sekolah tidak pernah menanyakan Pancasila",
+      "Karena Pancasila bernilai luhur ketika hadir dalam tindakan nyata kehidupan sehari-hari",
+      "Karena Pancasila hanya berlaku untuk pejabat tinggi negara",
+      "Karena hafalan teks akan membatasi kebebasan berpendapat"
+    ],
+    ans: 1,
+    exp: "Nilai luhur Pancasila esensialnya adalah diamalkan dalam perbuatan dan tindakan nyata bermasyarakat dan berbangsa."
   }
 ];
 
-let currentQ = 0;
-let score = 0;
-let timerSeconds = 20;
-let timerInterval = null;
+const questionsBab2 = [
+  {
+    q: "UUD NRI Tahun 1945 menjamin kemerdekaan berserikat, berkumpul, serta mengeluarkan pikiran secara lisan dan tulisan dalam pasal...",
+    opts: [
+      "Pasal 27 ayat (2)",
+      "Pasal 28 dan Pasal 28E ayat (3)",
+      "Pasal 30 ayat (1)",
+      "Pasal 31 ayat (1)"
+    ],
+    ans: 1,
+    exp: "Pasal 28 dan 28E ayat (3) menegaskan jaminan kebebasan berserikat, berkumpul, dan mengeluarkan pendapat."
+  },
+  {
+    q: "Esensi utama sistem demokrasi menurut Alinea IV Pembukaan UUD NRI Tahun 1945 adalah...",
+    opts: [
+      "Kekuasaan tertinggi berada di tangan presiden",
+      "Susunan Negara Republik Indonesia yang berkedaulatan rakyat",
+      "Sistem oligarki multipartai",
+      "Pemusatan hukum pada komando militer"
+    ],
+    ans: 1,
+    exp: "Alinea IV menegaskan negara disusun berdasarkan kedaulatan rakyat sebagai esensi demokrasi."
+  },
+  {
+    q: "Menurut Mohammad Hatta (1960), demokrasi telah lama dipraktikkan di desa-desa nusantara melalui tradisi musyawarah seperti...",
+    opts: [
+      "Feodalisme keraton di Mataram",
+      "Rembug desa di Jawa dan tudang sipulung di Sulawesi Selatan",
+      "Sistem tanam paksa di pedesaan",
+      "Kekuasaan mutlak kepala suku tanpa rapat"
+    ],
+    ans: 1,
+    exp: "Bung Hatta mencontohkan rembug desa di Jawa, kerapatan adat nagari di Sumbar, dan tudang sipulung di Sulsel."
+  },
+  {
+    q: "Pernyataan Pasal 1 ayat (2) UUD 1945 SETELAH dilakukan amandemen berbunyi...",
+    opts: [
+      "Kedaulatan di tangan rakyat dan dilakukan sepenuhnya oleh MPR",
+      "Kedaulatan di tangan rakyat dan dilakukan menurut Undang-Undang Dasar",
+      "Kedaulatan di tangan Presiden bersama-sama Dewan Perwakilan Rakyat",
+      "Kedaulatan berada di bawah komando kabinet menteri"
+    ],
+    ans: 1,
+    exp: "Setelah amandemen, kedaulatan berada di tangan rakyat dan dilaksanakan menurut Undang-Undang Dasar."
+  },
+  {
+    q: "Pakar ilmu politik Affan Gaffar merumuskan 5 indikator negara demokrasi, yaitu...",
+    opts: [
+      "Monarki, sentralisasi, aristokrasi, sensur, dan veto",
+      "Akuntabilitas, rotasi kekuasaan, rekrutmen politik terbuka, pemilu, dan pemenuhan hak-hak dasar",
+      "Kehakiman mutlak, partai tunggal, pembagian wilayah, dwifungsi, dan komando",
+      "Pajak tinggi, militer kuat, pers teratur, dekrit, dan otonomi khusus"
+    ],
+    ans: 1,
+    exp: "Affan Gaffar menetapkan 5 pilar indikator: akuntabilitas, rotasi kekuasaan, rekrutmen terbuka, pemilu, pemenuhan hak dasar."
+  },
+  {
+    q: "Indikator 'akuntabilitas' dalam sistem demokrasi berarti bahwa...",
+    opts: [
+      "Semua pemegang jabatan publik harus mempertanggungjawabkan ucapan dan tindakannya kepada rakyat",
+      "Pemerintah berhak menutup akses audit anggaran belanja",
+      "Rakyat dilarang mengkritisi setiap keputusan pejabat",
+      "Masa jabatan pejabat publik tidak dapat dievaluasi"
+    ],
+    ans: 0,
+    exp: "Akuntabilitas mewajibkan pertanggungjawaban terbuka atas kebijakan pejabat kepada seluruh rakyat."
+  },
+  {
+    q: "Konstitusi pertama yang disahkan PPKI pada 18 Agustus 1945 disebut Bung Karno sebagai 'revolutiegrondwet', yang artinya...",
+    opts: [
+      "Undang-Undang Dasar penaklukan perang",
+      "Undang-Undang Dasar kilat/sementara yang dibuat dalam suasana revolusi",
+      "Hukum adat kerajaan Nusantara",
+      "Konstitusi serikat bentukan sekutu"
+    ],
+    ans: 1,
+    exp: "Bung Karno menyebutnya UUD kilat/sementara (revolutiegrondwet) yang disusun cepat untuk memenuhi kebutuhan mendesak proklamasi."
+  },
+  {
+    q: "Naskah UUD 1945 yang disahkan PPKI pada tanggal 18 Agustus 1945 terdiri atas...",
+    opts: [
+      "Pembukaan dan 37 pasal Batang Tubuh dengan lampiran piagam PBB",
+      "Mukadimah/Pembukaan, Batang Tubuh (XV Bab, 36 Pasal), dan Aturan Peralihan serta Tambahan tanpa Penjelasan",
+      "Piagam Jakarta lengkap beserta penjelasan resmi menteri kehakiman",
+      "Dekrit Presiden dan 197 pasal federal"
+    ],
+    ans: 1,
+    exp: "Pada 18 Agustus 1945 disahkan Pembukaan dan Batang Tubuh 71 butir ketentuan tanpa bagian Penjelasan (penjelasan disusun Soepomo kemudian)."
+  },
+  {
+    q: "Maklumat Pemerintah tanggal 3 November 1945 yang ditandatangani Wapres Mohammad Hatta berisi tentang...",
+    opts: [
+      "Pembentukan tentara nasional tetap",
+      "Pemberian kesempatan seluas-luasnya untuk mendirikan partai-partai politik",
+      "Penghentian perundingan dengan Belanda",
+      "Pemberlakuan darurat perang nasional"
+    ],
+    ans: 1,
+    exp: "Maklumat 3 November 1945 menganjurkan pembentukan partai politik sehingga lahirlah sekitar 40 partai politik."
+  },
+  {
+    q: "Bentuk negara dan sistem pemerintahan Republik Indonesia Serikat (RIS) berdasarkan Konstitusi RIS 1949 adalah...",
+    opts: [
+      "Negara Kesatuan dengan Sistem Presidensial",
+      "Negara Serikat/Federasi dengan Sistem Pemerintahan Parlementer",
+      "Negara Kerajaan Serikat dengan Perdana Menteri",
+      "Negara Monarki Konstitusional dengan Presiden"
+    ],
+    ans: 1,
+    exp: "Konstitusi RIS menetapkan bentuk negara serikat (federasi) dan sistem pemerintahan parlementer dengan perdana menteri."
+  },
+  {
+    q: "Pada masa berlakunya Konstitusi RIS (1949-1950), UUD 1945 tetap berlaku tetapi hanya pada wilayah...",
+    opts: [
+      "Negara Bagian Indonesia Timur di Makassar",
+      "Negara Bagian Pasundan di Bandung",
+      "Negara Bagian Republik Indonesia yang beribu kota di Yogyakarta",
+      "Seluruh kepulauan Sumatra bagian utara"
+    ],
+    ans: 2,
+    exp: "UUD 1945 tetap berlaku di Negara Bagian RI yang beribu kota di Yogyakarta dengan pejabat Presiden Mr. Assaat."
+  },
+  {
+    q: "Salah satu penyebab kegagalan dan ketidakstabilan pemerintahan pada masa berlakunya UUDS 1950 adalah...",
+    opts: [
+      "Terjadinya pergantian kabinet sebanyak tujuh kali dalam kurun waktu sembilan tahun",
+      "Presiden memegang kekuasaan tunggal mutlak seumur hidup",
+      "Tidak ada partai politik yang diperbolehkan ikut pemilu",
+      "Militer membubarkan seluruh parlemen sejak tahun 1950"
+    ],
+    ans: 0,
+    exp: "Sistem parlementer UUDS 1950 memicu jatuh-bangun kabinet sebanyak 7 kali dalam kurun waktu 1950-1959."
+  },
+  {
+    q: "Dekrit Presiden 5 Juli 1959 yang dikeluarkan oleh Presiden Sukarno memuat tiga keputusan pokok, yaitu...",
+    opts: [
+      "Bubarkan partai, bentuk serikat, dan adakan pemilu darurat",
+      "Pembubaran Konstituante, berlakunya kembali UUD 1945 (tidak berlakunya UUDS 1950), dan pembentukan MPRS/DPAS",
+      "Ganti lambang Garuda, ubah bendera, dan bentuk RIS baru",
+      "Turunkan harga barang, rombak kabinet, dan bubarkan parlemen"
+    ],
+    ans: 1,
+    exp: "Dekrit 5 Juli 1959 membubarkan Konstituante, memberlakukan kembali UUD 1945, dan membentuk MPRS serta DPAS."
+  },
+  {
+    q: "Ketidaksetujuan Mohammad Hatta yang berujung pada pengunduran dirinya sebagai Wakil Presiden pada 1 Desember 1956 disebabkan oleh...",
+    opts: [
+      "Konsep Demokrasi Terpimpin Sukarno yang dikhawatirkan memicu kekuasaan tanpa kontrol",
+      "Penolakan Sukarno memindahkan ibu kota ke Yogyakarta",
+      "Kemenangan partai Masyumi dalam pemilu pertama 1955",
+      "Hasil perundingan Meja Bundar di Den Haag"
+    ],
+    ans: 0,
+    exp: "Bung Hatta menolak gagasan Demokrasi Terpimpin dan penguburan partai politik karena berisiko memunculkan kekuasaan tanpa kontrol."
+  },
+  {
+    q: "Latar belakang mendasar dilakukannya perubahan (amandemen) UUD NRI Tahun 1945 pascareformasi 1998 adalah...",
+    opts: [
+      "Naskah asli UUD 1945 sudah hilang saat krisis moneter",
+      "Kekuasaan sangat besar di tangan eksekutif (Presiden) serta belum adanya sistem check and balances yang memadai",
+      "Desakan negara asing untuk mengubah Pancasila",
+      "Perintah langsung dari Mahkamah Internasional"
+    ],
+    ans: 1,
+    exp: "Kekuasaan presiden yang dominan (executive heavy) dan pasal multitafsir mendorong amandemen agar ada check and balances."
+  },
+  {
+    q: "Lembaga negara yang memiliki wewenang konstitusional untuk mengubah dan menetapkan UUD NRI Tahun 1945 sesuai Pasal 3 dan 37 adalah...",
+    opts: [
+      "Dewan Perwakilan Rakyat (DPR)",
+      "Mahkamah Konstitusi (MK)",
+      "Majelis Permusyawaratan Rakyat (MPR)",
+      "Presiden bersama Kabinet Menteri"
+    ],
+    ans: 2,
+    exp: "Pasal 3 dan 37 UUD NRI 1945 menegaskan wewenang perubahan UUD berada pada MPR."
+  },
+  {
+    q: "Berdasarkan Pasal 37 UUD NRI 1945, usul perubahan pasal-pasal UUD dapat diagendakan dalam sidang MPR apabila diajukan oleh sekurang-kurangnya...",
+    opts: [
+      "1/2 dari jumlah anggota DPR",
+      "1/3 dari jumlah anggota MPR",
+      "2/3 dari seluruh menteri kabinet",
+      "Seluruh pimpinan partai politik fraksi terbesar"
+    ],
+    ans: 1,
+    exp: "Pasal 37 ayat (1) mensyaratkan usulan perubahan diajukan sekurang-kurangnya 1/3 dari jumlah anggota MPR."
+  },
+  {
+    q: "Kuorum kehadiran anggota MPR untuk dapat mengubah pasal-pasal dalam UUD NRI Tahun 1945 adalah sekurang-kurangnya...",
+    opts: [
+      "Setengah dari jumlah anggota",
+      "2/3 dari jumlah anggota MPR",
+      "3/4 dari jumlah anggota MPR",
+      "100% anggota wajib hadir"
+    ],
+    ans: 1,
+    exp: "Sidang MPR untuk mengubah pasal UUD harus dihadiri sekurang-kurangnya 2/3 dari jumlah anggota MPR (Pasal 37 ayat 3)."
+  },
+  {
+    q: "Putusan MPR untuk menetapkan perubahan pasal UUD sah apabila disetujui oleh sekurang-kurangnya...",
+    opts: [
+      "50% ditambah satu anggota dari seluruh anggota MPR",
+      "Suara aklamasi dari seluruh pimpinan komisi",
+      "2/3 suara fraksi yang mendukung pemerintah",
+      "Mayoritas delegasi utusan golongan daerah"
+    ],
+    ans: 0,
+    exp: "Pasal 37 ayat (4) menentukan putusan perubahan disetujui oleh sekurang-kurangnya 50% ditambah satu anggota MPR."
+  },
+  {
+    q: "Ketentuan mutlak dalam Pasal 37 ayat (5) UUD NRI Tahun 1945 menegaskan bahwa bagian yang TIDAK DAPAT diubah adalah...",
+    opts: [
+      "Bentuk pemerintahan Republik",
+      "Bentuk Negara Kesatuan Republik Indonesia",
+      "Tata cara pemilihan anggota DPD",
+      "Susunan kementerian kabinet"
+    ],
+    ans: 1,
+    exp: "Pasal 37 ayat (5) menyatakan tegas bahwa khusus mengenai bentuk Negara Kesatuan Republik Indonesia tidak dapat dilakukan perubahan."
+  },
+  {
+    q: "Kesepakatan dasar MPR dalam proses amandemen UUD NRI Tahun 1945 antara lain adalah...",
+    opts: [
+      "Mengubah Pembukaan UUD 1945 untuk disesuaikan era globalisasi",
+      "Tidak mengubah Pembukaan UUD 1945 dan tetap mempertahankan NKRI",
+      "Mengganti sistem presidensial menjadi sistem parlementer murni",
+      "Menghidupkan kembali Dewan Pertimbangan Agung (DPA)"
+    ],
+    ans: 1,
+    exp: "Kesepakatan dasar MPR: tidak mengubah Pembukaan, mempertahankan NKRI, mempertegas presidensial, dan memasukkan penjelasan ke pasal."
+  },
+  {
+    q: "Teknik perubahan naskah UUD 1945 dilakukan secara 'adendum', yang artinya...",
+    opts: [
+      "Naskah asli dimusnahkan dan diganti lembaran baru",
+      "Naskah asli UUD 1945 tetap dipertahankan, dan naskah perubahan dilekatkan berdampingan",
+      "Perubahan hanya berlaku sementara sampai referendum rakyat digelar",
+      "Setiap pasal yang diubah dihapus dari arsip kenegaraan"
+    ],
+    ans: 1,
+    exp: "Adendum berarti tetap mempertahankan naskah asli, sedangkan naskah perubahan diletakkan melekat pada naskah aslinya."
+  },
+  {
+    q: "Fokus utama dari Perubahan Pertama UUD NRI Tahun 1945 (Oktober 1999) adalah...",
+    opts: [
+      "Pembatasan kekuasaan Presiden dan pemberdayaan DPR",
+      "Penetapan lagu kebangsaan dan batas wilayah laut",
+      "Pembentukan Mahkamah Konstitusi dan Komisi Yudisial",
+      "Pengaturan pemilu serentak lima tahunan"
+    ],
+    ans: 0,
+    exp: "Perubahan Pertama (1999) diarahkan membatasi kekuasaan Presiden (seperti masa jabatan) dan memperdayakan wewenang legislatif DPR."
+  },
+  {
+    q: "Materi penting mengenai Hak Asasi Manusia (HAM) secara komprehensif dimasukkan ke dalam batang tubuh UUD 1945 pada...",
+    opts: [
+      "Perubahan Pertama (1999)",
+      "Perubahan Kedua (2000)",
+      "Perubahan Ketiga (2001)",
+      "Perubahan Keempat (2002)"
+    ],
+    ans: 1,
+    exp: "Bab XA tentang Hak Asasi Manusia (Pasal 28A-28J) disahkan pada Perubahan Kedua Sidang Tahunan MPR 2000."
+  },
+  {
+    q: "Lembaga baru berupa Mahkamah Konstitusi (MK), Dewan Perwakilan Daerah (DPD), dan Komisi Yudisial (KY) diatur dalam...",
+    opts: [
+      "Perubahan Pertama (1999)",
+      "Perubahan Kedua (2000)",
+      "Perubahan Ketiga (2001)",
+      "Perubahan Keempat (2002)"
+    ],
+    ans: 2,
+    exp: "MK, DPD, KY, dan pemilihan presiden secara langsung disahkan dalam Perubahan Ketiga tahun 2001."
+  },
+  {
+    q: "Penghapusan Dewan Pertimbangan Agung (DPA) serta kewajiban negara mengalokasikan anggaran pendidikan 20% disahkan pada...",
+    opts: [
+      "Perubahan Pertama",
+      "Perubahan Kedua",
+      "Perubahan Ketiga",
+      "Perubahan Keempat (2002)"
+    ],
+    ans: 3,
+    exp: "Penghapusan DPA, aturan pendidikan dasar, dan bank sentral disahkan pada Perubahan Keempat tahun 2002."
+  },
+  {
+    q: "Setelah dilakukan amandemen UUD 1945, kedudukan lembaga kepresidenan mengalami perubahan nyata berupa...",
+    opts: [
+      "Presiden tidak lagi dapat membubarkan DPR dan masa jabatannya dibatasi maksimal dua periode",
+      "Presiden menjadi mandataris MPR yang sewaktu-waktu dapat dipecat oleh mosi parlemen",
+      "Presiden berhak memilih seluruh hakim Mahkamah Konstitusi seorang diri",
+      "Presiden merangkap sebagai ketua Mahkamah Agung"
+    ],
+    ans: 0,
+    exp: "Pasal 7C melarang presiden membubarkan DPR, dan Pasal 7 membatasi jabatan presiden maksimal 2 periode (5 tahun x 2)."
+  },
+  {
+    q: "Menurut Mustari (2014), makna berperilaku demokratis adalah...",
+    opts: [
+      "Selalu menuruti kemauan orang tua tanpa boleh berbicara",
+      "Cara berpikir, bersikap, dan bertindak yang menilai sama hak dan kewajiban dirinya dan orang lain",
+      "Memaksakan aspirasi pribadi dengan memanfaatkan teknologi siber",
+      "Menolak hasil pemilihan umum jika jagoannya kalah"
+    ],
+    ans: 1,
+    exp: "Demokratis adalah cara berpikir, bersikap, bertindak yang menilai setara hak dan kewajiban diri sendiri serta orang lain."
+  },
+  {
+    q: "Dalam era keterbukaan informasi dan kemajuan teknologi digital, perilaku demokratis Pelajar Pancasila diwujudkan dengan...",
+    opts: [
+      "Menyebarkan kabar provokatif yang belum jelas kebenarannya",
+      "Menyaring informasi (*saring sebelum sharing*), menjauhi hoaks, serta menyampaikan kritik dengan santun",
+      "Membuat meme bernada kebencian dan merendahkan martabat orang lain",
+      "Menghindari membaca sumber literasi dari media berita tepercaya"
+    ],
+    ans: 1,
+    exp: "Generasi berteknologi harus cerdas berliterasi: memverifikasi kebenaran info dan bertutur kata santun tanpa menyebar fitnah."
+  },
+  {
+    q: "Prinsip 'rule of law' yang menjadi pilar negara hukum dan demokrasi Indonesia dalam UUD NRI 1945 tertuang dalam...",
+    opts: [
+      "Pasal 1 ayat (1)",
+      "Pasal 1 ayat (3)",
+      "Pasal 2 ayat (1)",
+      "Pasal 33 ayat (1)"
+    ],
+    ans: 1,
+    exp: "Pasal 1 ayat (3) UUD NRI Tahun 1945 menyatakan tegas: 'Negara Indonesia adalah negara hukum'."
+  }
+];
 
-function startGame() {
-  document.getElementById("start-screen").classList.add("hidden");
-  document.getElementById("quiz-screen").classList.remove("hidden");
-  document.getElementById("result-screen").classList.add("hidden");
-  currentQ = 0;
-  score = 0;
-  document.getElementById("current-score").innerText = score;
-  document.getElementById("q-total").innerText = quizData.length;
-  loadQuestion();
+// Combine or serialize all into JSON
+let allData = {
+  bab1: questionsBab1,
+  bab2: questionsBab2
+};
+
+let activeQuestions = [];
+let currentIdx = 0;
+let userScore = 0;
+let countdown = 25;
+let timerObj = null;
+let selectedMode = 'bab1';
+let playerName = 'Peserta Didik';
+
+function setMode(mode, btn) {
+  selectedMode = mode;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
 }
 
-function loadQuestion() {
-  clearInterval(timerInterval);
-  timerSeconds = 20;
-  updateTimerDisplay();
+function startQuiz() {
+  const nameInput = document.getElementById('player-name').value.trim();
+  playerName = nameInput || 'Siswa Berprestasi';
 
-  const q = quizData[currentQ];
-  document.getElementById("q-counter").innerText = currentQ + 1;
-  document.getElementById("q-category").innerText = q.category;
-  document.getElementById("question-text").innerText = q.question;
+  if (selectedMode === 'bab1') {
+    activeQuestions = [...questionsBab1];
+  } else if (selectedMode === 'bab2') {
+    activeQuestions = [...questionsBab2];
+  } else {
+    activeQuestions = [...questionsBab1, ...questionsBab2];
+  }
 
-  const container = document.getElementById("options-container");
-  container.innerHTML = "";
+  // Shuffle questions
+  activeQuestions.sort(() => Math.random() - 0.5);
 
-  const labels = ["A", "B", "C", "D"];
-  q.options.forEach((opt, idx) => {
-    const btn = document.createElement("button");
-    btn.className = "option-btn";
-    btn.innerHTML = `<span class="label">${labels[idx]}</span> <span>${opt}</span>`;
-    btn.onclick = () => selectAnswer(idx);
-    container.appendChild(btn);
+  currentIdx = 0;
+  userScore = 0;
+  document.getElementById('lbl-player').innerText = playerName;
+  document.getElementById('lbl-total-q').innerText = activeQuestions.length;
+  document.getElementById('lbl-score').innerText = userScore;
+
+  document.getElementById('view-start').classList.add('hidden');
+  document.getElementById('view-quiz').classList.remove('hidden');
+  document.getElementById('view-result').classList.add('hidden');
+
+  renderQuestion();
+}
+
+function renderQuestion() {
+  clearInterval(timerObj);
+  countdown = 25;
+  updateTimerUI();
+
+  const qData = activeQuestions[currentIdx];
+  document.getElementById('lbl-curr-q').innerText = currentIdx + 1;
+  document.getElementById('lbl-category').innerText = currentIdx < 30 ? (selectedMode === 'bab2' ? 'Bab II: Demokrasi UUD 1945' : 'Bab I: Menjiwai Pancasila') : 'Bab II: Demokrasi UUD 1945';
+  document.getElementById('lbl-question-text').innerText = qData.q;
+
+  const optBox = document.getElementById('options-box');
+  optBox.innerHTML = '';
+  const labels = ['A', 'B', 'C', 'D'];
+
+  qData.opts.forEach((optText, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="lbl">${labels[i]}</span><span>${optText}</span>`;
+    btn.onclick = () => handleAnswer(i);
+    optBox.appendChild(btn);
   });
 
-  const feedback = document.getElementById("feedback");
-  feedback.className = "feedback-box";
-  feedback.innerText = "";
-  document.getElementById("next-btn").classList.add("hidden");
+  const expBox = document.getElementById('explanation-box');
+  expBox.className = 'explanation-box';
+  expBox.innerText = '';
+  document.getElementById('btn-next').classList.add('hidden');
 
-  timerInterval = setInterval(() => {
-    timerSeconds--;
-    updateTimerDisplay();
-    if (timerSeconds <= 0) {
-      clearInterval(timerInterval);
-      timeOutAnswer();
+  timerObj = setInterval(() => {
+    countdown--;
+    updateTimerUI();
+    if (countdown <= 0) {
+      clearInterval(timerObj);
+      handleTimeout();
     }
   }, 1000);
 }
 
-function updateTimerDisplay() {
-  document.getElementById("timer").innerText = `Waktu: ${timerSeconds}s`;
+function updateTimerUI() {
+  document.getElementById('lbl-timer').innerText = `Waktu: ${countdown}s`;
 }
 
-function selectAnswer(chosenIdx) {
-  clearInterval(timerInterval);
-  const q = quizData[currentQ];
-  const buttons = document.querySelectorAll(".option-btn");
-  buttons.forEach(btn => btn.disabled = true);
+function handleAnswer(choice) {
+  clearInterval(timerObj);
+  const qData = activeQuestions[currentIdx];
+  const buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach(b => b.disabled = true);
 
-  const feedback = document.getElementById("feedback");
+  const expBox = document.getElementById('explanation-box');
 
-  if (chosenIdx === q.answer) {
-    buttons[chosenIdx].classList.add("correct");
-    score += 100;
-    document.getElementById("current-score").innerText = score;
-    feedback.className = "feedback-box correct";
-    feedback.innerHTML = `<strong>Tepat Sekali! (+100 Poin)</strong><br>${q.explanation}`;
+  if (choice === qData.ans) {
+    buttons[choice].classList.add('correct');
+    userScore++;
+    document.getElementById('lbl-score').innerText = userScore;
+    expBox.className = 'explanation-box correct';
+    expBox.innerHTML = `<strong>Jawaban Benar! (+1 Skor)</strong><br>${qData.exp}`;
   } else {
-    buttons[chosenIdx].classList.add("wrong");
-    buttons[q.answer].classList.add("correct");
-    feedback.className = "feedback-box wrong";
-    feedback.innerHTML = `<strong>Kurang Tepat!</strong> Jawaban yang benar adalah poin (${["A","B","C","D"][q.answer]}).<br>${q.explanation}`;
+    buttons[choice].classList.add('wrong');
+    buttons[qData.ans].classList.add('correct');
+    expBox.className = 'explanation-box wrong';
+    expBox.innerHTML = `<strong>Jawaban Kurang Tepat!</strong> Kunci: <strong>${['A','B','C','D'][qData.ans]}</strong>.<br>${qData.exp}`;
   }
 
-  document.getElementById("next-btn").classList.remove("hidden");
+  document.getElementById('btn-next').classList.remove('hidden');
 }
 
-function timeOutAnswer() {
-  const q = quizData[currentQ];
-  const buttons = document.querySelectorAll(".option-btn");
-  buttons.forEach(btn => btn.disabled = true);
-  buttons[q.answer].classList.add("correct");
+function handleTimeout() {
+  const qData = activeQuestions[currentIdx];
+  const buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach(b => b.disabled = true);
+  buttons[qData.ans].classList.add('correct');
 
-  const feedback = document.getElementById("feedback");
-  feedback.className = "feedback-box wrong";
-  feedback.innerHTML = `<strong>Waktu Habis!</strong> Jawaban yang benar adalah (${["A","B","C","D"][q.answer]}).<br>${q.explanation}`;
+  const expBox = document.getElementById('explanation-box');
+  expBox.className = 'explanation-box wrong';
+  expBox.innerHTML = `<strong>Waktu Habis!</strong> Kunci jawaban: <strong>${['A','B','C','D'][qData.ans]}</strong>.<br>${qData.exp}`;
 
-  document.getElementById("next-btn").classList.remove("hidden");
+  document.getElementById('btn-next').classList.remove('hidden');
 }
 
-function nextQuestion() {
-  currentQ++;
-  if (currentQ < quizData.length) {
-    loadQuestion();
+function goNext() {
+  currentIdx++;
+  if (currentIdx < activeQuestions.length) {
+    renderQuestion();
   } else {
-    showResult();
-  }
-}
-
-function showResult() {
-  document.getElementById("quiz-screen").classList.add("hidden");
-  document.getElementById("result-screen").classList.remove("hidden");
-  document.getElementById("final-score").innerText = score;
-
-  const maxScore = quizData.length * 100;
-  const msg = document.getElementById("result-message");
-  if (score === maxScore) {
-    msg.innerText = "Luar Biasa! Anda Juara Sejati Cerdas Cermat Pancasila!";
-  } else if (score >= maxScore * 0.7) {
-    msg.innerText = "Hebat! Penguasaan materi BAB I & BAB II Anda sangat memuaskan!";
-  } else {
-    msg.innerText = "Terus tingkatkan pemahaman Anda mengenai buku Pendidikan Pancasila!";
+    finishQuiz();
   }
 }
 
-function restartGame() {
-  startGame();
+function finishQuiz() {
+  document.getElementById('view-quiz').classList.add('hidden');
+  document.getElementById('view-result').classList.remove('hidden');
+
+  const total = activeQuestions.length;
+  const pct = Math.round((userScore / total) * 100);
+
+  document.getElementById('res-score-pct').innerText = pct;
+  document.getElementById('res-subtitle').innerText = `Total Jawaban Benar: ${userScore} dari ${total} Soal`;
+
+  const feedbackElem = document.getElementById('res-feedback');
+  const certWrapper = document.getElementById('cert-wrapper');
+
+  if (pct > 85) {
+    feedbackElem.innerHTML = `<span style="color:#4ade80; font-weight:bold;">Selamat ${playerName}!</span> Anda mencapai nilai di atas batas 85 dan berhak memperoleh Sertifikat Penghargaan resmi.`;
+    certWrapper.classList.remove('hidden');
+    document.getElementById('cert-student-name').innerText = playerName;
+    document.getElementById('cert-score-val').innerText = pct;
+  } else {
+    feedbackElem.innerHTML = `Nilai Anda adalah <strong>${pct}</strong>. Syarat minimal memperoleh sertifikat adalah <strong>lebih dari 85</strong>. Tetap semangat mengulang dan menguasai materi buku teks!`;
+    certWrapper.classList.add('hidden');
+  }
+}
+
+function resetToStart() {
+  document.getElementById('view-result').classList.add('hidden');
+  document.getElementById('view-start').classList.remove('hidden');
 }
 </script>
 </body>
